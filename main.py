@@ -3,7 +3,9 @@ from random import shuffle
 from models.data import dataElement, case
 from models.pdf import PDF
 from pathlib import Path
-from shutil import copy
+import copy
+import shutil 
+import ctypes
 import sys
 import os
 import models.methods as methods 
@@ -28,7 +30,7 @@ def moveFile(option):
         dirToMove = 'Documents'
     
     try:
-        copy(f"{os.getcwd()}\\pdf\\{file_name}.pdf" ,f"{pathUser}\\{dirToMove}\\{file_name}.pdf")
+        shutil.copy(f"{os.getcwd()}\\pdf\\{file_name}.pdf", f"{pathUser}\\{dirToMove}\\{file_name}.pdf")
         print(">> ARCHIVO GUARDADO CORRACTAMENTE")
         enterToContinue()
         
@@ -47,15 +49,10 @@ def saveIn():
     
     if option == 'a' or option == 'b': 
         moveFile(option)
-     
-def captureNameFile():
-    name = input(">> Ingrese el nombre del archivo [ENTER PARA DEFAULT] => ")
-    if not name == "":
-        file_name = name
+    else:
+        pass
     
 def makeReportPDFs(list_methods, data_10elements, data_100elements, data_1000elements):
-    captureNameFile()
-    
     try:
         pdf = PDF()
         pdf.makePDF(list_methods, file_name, [data_10elements, data_100elements, data_1000elements]) 
@@ -184,27 +181,34 @@ def createDataSets():
     return data_10elements, data_100elements, data_1000elements
 
 if __name__ == "__main__":
-    
-    data_10elements, data_100elements, data_1000elements = createDataSets()
-    
     endProgram = False
+    
     while not endProgram:
+        
         print("//MEDIDOR DE ALGORITMOS//\n"
-              "a) Iniciar pruebas individuales\n"
+              "a) Hacer pruebas\n"
               "q) Cerrar\n"
               + "---------------------------------------------------------")
         option_selected = input("[INGRESE UNA OPCION] => ")
                
         if option_selected in 'a':
+            # lista a usar
+            data_10elements, data_100elements, data_1000elements = createDataSets()
+            
+            # Crear copias de variables
+            copy10 = copy.deepcopy(data_10elements)
+            copy100 = copy.deepcopy(data_100elements)
+            copy1000 = copy.deepcopy(data_1000elements)
+            
             list_methods = generalTest(data_10elements, data_100elements, data_1000elements)
             enterToContinue()
-            data_10elements, data_100elements, data_1000elements = createDataSets()
-            makeReportPDFs(list_methods, data_10elements, data_100elements, data_1000elements)
+            makeReportPDFs(list_methods, copy10, copy100, copy1000)
             
         elif option_selected in 'q':
             endProgram = True
+            
         os.system("cls")
-        
+    print("Bye bye....")
             
       
         

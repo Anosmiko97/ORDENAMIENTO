@@ -2,6 +2,7 @@ from typing import List
 from fpdf import FPDF
 
 class PDF(FPDF):
+
     def header(self):
         self.set_font('Arial', 'B', 12)
         self.cell(0, 10, 'Reporte de Pruebas de Métodos de Ordenamiento', 0, 1, 'C')
@@ -60,12 +61,12 @@ class PDF(FPDF):
             self.add_to_row(empty_rows, i, 9, method.getData1000().getWorseCase())
 
         # Configuración de las anchuras de las columnas
-        w2 = 18
+        w2 = 18.75
         col_widths = [30, w2, w2, w2, w2, w2, w2, w2, w2, w2]
         row_height = 7
         
         # Resultados generales
-        self.set_font('Arial', 'B', 8)
+        self.set_font('Arial', 'B', 6)
         self.create_table([header], col_widths, row_height)
         self.create_table([sub_header], col_widths, row_height)
         self.set_font('Arial', '', 6)
