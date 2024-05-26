@@ -11,46 +11,51 @@ def bubble_sort(lst):
                 lst[j], lst[j + 1] = lst[j + 1], lst[j]
     return num  
               
+
 def insertion_sort(lst):
     num = 0
     
-    for i in range(len(lst)):
-        num += 1
+    for i in range(1, len(lst)):
+        key = lst[i]
         j = i - 1
+        num += 1 
         
-        while j >= 0 and lst[i] < lst[j]:
+        while j >= 0 and key < lst[j]:
             lst[j + 1] = lst[j]
             j -= 1
-            num += 1
-        lst[j + 1] = lst[i] 
+            num += 2  
+        lst[j + 1] = key 
+        num += 1  
+    
     return num
-        
+    
 def quicksort(arr):
     num = 0
     if len(arr) <= 1:
-        return num
-    else:
-        pivot = arr[0]
-        lesser = []
-        equal = []
-        greater = []
-        
-        for x in arr:
-            num += 1
-            if x < pivot:
-                lesser.append(x)
-            elif x > pivot:
-                greater.append(x)
-            else:
-                equal.append(x)
-        
-        num_lesser = quicksort(lesser)
-        num_greater = quicksort(greater)
-        
-        num += num_lesser + num_greater
-        
+        num += 1
         return num
 
+    pivot = arr[0]
+    lesser, equal, greater = [], [], []
+    
+    for x in arr:
+        num += 1
+        if x < pivot:
+            lesser.append(x)
+            num += 1
+        elif x > pivot:
+            greater.append(x)
+            num += 1
+        else:
+            equal.append(x)
+            num += 1
+
+    num_lesser = quicksort(lesser)
+    num_greater = quicksort(greater)
+    
+    num += num_lesser + num_greater
+
+    return num
 
 def selection_sort(lst):
     num = 0
@@ -72,24 +77,28 @@ def selection_sort(lst):
 
 def shellShort(lst):
     num = 0
-    
     n = len(lst)
-    gap = n // 2 # Intervalo
+    gap = n // 2
     
     while gap > 0:
-        num += 1
-        
         for i in range(gap, n):
-            num += 1
             temp = lst[i]
             j = i
+            num += 1  # 
+            
             while j >= gap and lst[j - gap] > temp:
                 lst[j] = lst[j - gap]
                 j -= gap
-                lst[j] = temp
-                num += 1
-            gap //= 2 
+                num += 2  
+            
+            lst[j] = temp
+            num += 1  
+        
+        gap //= 2
+        num += 1 
+    
     return num
+
 
 def shakerSort(arr):
     num = 0

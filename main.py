@@ -202,10 +202,8 @@ if __name__ == "__main__":
             data_10elements, data_100elements, data_1000elements = createDataSets()
             makeReportPDFs(list_methods, data_10elements, data_100elements, data_1000elements)
             
-        elif option_selected in 'c':
+        elif option_selected in 'q':
             endProgram = True
-        else:
-            print(warning  + "Ingrese un caracter valido")
         os.system("cls")
         
             

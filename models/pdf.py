@@ -34,8 +34,8 @@ class PDF(FPDF):
         header = ["", "", "10 datos", "", "", "100 datos", "", "", "1000 datos", ""]
         sub_header = ["Método de Ordenación", "Mejor Caso", "Caso Promedio", "Peor Caso", "Mejor Caso", "Caso Promedio", "Peor Caso", "Mejor Caso", "Caso Promedio", "Peor Caso"]
         methods = [
-            "Inserción",
             "Burbuja",
+            "Insercion",
             "Selección",
             "Vibración",
             "Shell Sort",
