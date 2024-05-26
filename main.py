@@ -6,7 +6,6 @@ from pathlib import Path
 from shutil import copy
 import sys
 import os
-import re
 import models.methods as methods 
 
 # Aumentar limite de recursion
