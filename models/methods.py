@@ -27,42 +27,48 @@ def insertion_sort(lst):
         
 def quicksort(arr):
     num = 0
-    
     if len(arr) <= 1:
         return num
     else:
         pivot = arr[0]
-        
         lesser = []
-        for x in arr[1:]:
-            if x <= pivot:
-                lesser.append(x)
-                num += 1
+        equal = []
         greater = []
-        for x in arr[1:]:
-            if x > pivot:
+        
+        for x in arr:
+            num += 1
+            if x < pivot:
+                lesser.append(x)
+            elif x > pivot:
                 greater.append(x)
-                num += 1
-            
-        return quicksort(lesser) + [pivot] + quicksort(greater)
+            else:
+                equal.append(x)
+        
+        num_lesser = quicksort(lesser)
+        num_greater = quicksort(greater)
+        
+        num += num_lesser + num_greater
+        
+        return num
+
 
 def selection_sort(lst):
     num = 0
     
     for i in range(len(lst)):
-        num += 1
-        
-        # Encontrar el elemento mas chico 
-        minIndex = i
-        for j in range(i+1, len(lst)):
-            num += 1
+        # Encontrar el elemento más chico
+        min_index = i
+        for j in range(i + 1, len(lst)):
+            num += 1  
             if lst[j] < lst[min_index]:
                 min_index = j
-            num += 1
 
         # Intercambio de valores
-        lst[i], lst[min_index] = lst[min_index], lst[i]
+        if min_index != i:
+            lst[i], lst[min_index] = lst[min_index], lst[i]
+            num += 1  
     return num
+
 
 def shellShort(lst):
     num = 0
