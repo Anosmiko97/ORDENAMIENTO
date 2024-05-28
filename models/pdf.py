@@ -90,6 +90,6 @@ class PDF(FPDF):
         self.add_section_title("Resultados Generales de Todos los Métodos")
         self.generalResults(list_methods)
 
-        self.output(f".\\pdf\\{name}.pdf")
+        self.output(name)
 
 

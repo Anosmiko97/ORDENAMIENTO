@@ -14,7 +14,7 @@ import models.methods as methods
 sys.setrecursionlimit(3000)
 
 # Variables globales
-file_name = "reporte_metodos"
+file_name = f"{Path.home()}\\Desktop\\reporte_metodos.pdf"
 pathUser = Path.home()
 warning = "[*] WARNING: "
 output_count = "[TIEMPO] => "
@@ -22,43 +22,13 @@ results_title = "Resultados:"
 error = "[!] ERROR: "
 
 '''FUNCIONES PARA CREAR PDFs'''
-def moveFile(option):
-    dirToMove = ""
-    if option == 'a':
-        dirToMove = 'Desktop'
-    else:
-        dirToMove = 'Documents'
-    
-    try:
-        shutil.copy(f"{os.getcwd()}\\pdf\\{file_name}.pdf", f"{pathUser}\\{dirToMove}\\{file_name}.pdf")
-        print(">> ARCHIVO GUARDADO CORRACTAMENTE")
-        enterToContinue()
-        
-    except Exception as e:
-        print(error + str(e))
-        print(f"Archivo igual existe en: {pathUser}/Documents/EDD2PROYECTO/pdf")
-        enterToContinue() 
-    
-def saveIn():
-    print("\nDesea salvar en:\n"
-          "a) Escritorio\n"
-          "b) Documentos\n"
-          "c) Dejar guardado en C:/Users/User/Documents/EDD2PROYECTO/pdf")
-    print("---------------------------------------------------------")
-    option = input("[INGRESE UNA OPCION] => ")
-    
-    if option == 'a' or option == 'b': 
-        moveFile(option)
-    else:
-        pass
-    
 def makeReportPDFs(list_methods, data_10elements, data_100elements, data_1000elements):
     try:
         pdf = PDF()
         pdf.makePDF(list_methods, file_name, [data_10elements, data_100elements, data_1000elements]) 
         print(">> PDF CREADO!!!")
-        saveIn()
-        
+        enterToContinue()
+  
     except Exception as e:
         print(error + str(e))
         enterToContinue()
