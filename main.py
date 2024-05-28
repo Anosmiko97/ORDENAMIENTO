@@ -26,7 +26,7 @@ def makeReportPDFs(list_methods, data_10elements, data_100elements, data_1000ele
     try:
         pdf = PDF()
         pdf.makePDF(list_methods, file_name, [data_10elements, data_100elements, data_1000elements]) 
-        print(">> PDF CREADO!!!")
+        print(">> PDF GUARDADO EN EL ESCRITORIO!!!")
         enterToContinue()
   
     except Exception as e:
